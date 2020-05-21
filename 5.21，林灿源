@@ -1,0 +1,45 @@
+import java.util.concurrent.TimeUnit;  
+import org.apache.commons.io.filefilter.FileFilterUtils;  
+import org.apache.commons.io.monitor.FileAlterationMonitor;  
+import org.apache.commons.io.monitor.FileAlterationObserver;  
+
+public class filetest {
+    public static void main(String[] args) throws Exception {  
+        
+        String rootDir = "e:\\new";  
+    
+        long interval = TimeUnit.SECONDS.toMillis(40);  
+           
+        FileAlterationObserver observer = new FileAlterationObserver(  
+                                              rootDir,   
+                                              FileFilterUtils.and(  
+                                               FileFilterUtils.fileFileFilter(),  
+                                               FileFilterUtils.suffixFileFilter(".mp4")),   
+                                              null);  
+        observer.addListener(new MyFileListener());  
+        FileAlterationMonitor monitor = new FileAlterationMonitor(interval,observer);  
+        
+        monitor.start();  
+        
+    }  
+}
+
+
+import java.io.File;  
+import org.apache.commons.io.monitor.FileAlterationListenerAdaptor;  
+
+ 
+public class MyFileListener extends FileAlterationListenerAdaptor{  
+    @Override  
+    public void onFileCreate(File file) {  
+        System.out.println("[new]:" + file.getAbsolutePath());  
+    }  
+    @Override  
+    public void onFileChange(File file) {  
+        System.out.println("[change]:" + file.getAbsolutePath());  
+    }  
+    @Override  
+    public void onFileDelete(File file) {  
+        System.out.println("[Delete]:" + file.getAbsolutePath());  
+    }  
+} 
