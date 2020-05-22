@@ -1,0 +1,8 @@
+1.将java程序打包成exe可执行文件
+i.将项目导出为可执行的jar文件
+ii.下载exe4j软件,将可执行的jar文件转化为exe可执行文件。
+参考https://blog.csdn.net/zhangdaiscott/article/details/46988003
+
+
+2，昨天学习内容进一步了解——Java实现实时监控目录下文件变化
+使用了commons-io包来实现该功能。采用的是观察者模式来实现
