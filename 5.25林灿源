@@ -1,0 +1,89 @@
+package course_one;
+//
+//import java.io.BufferedWriter;
+//import java.io.File;
+//import java.io.FileWriter;
+//import java.io.IOException;
+//import java.util.*;
+//
+//
+//
+//public class course_one {
+//	
+//
+//
+////创建
+//	public static void main(String[] args){
+//		File file=new File("D:\\Li");
+//		if(!file.exists()){//如果文件夹不存在
+//			file.mkdir();//本地创建文件夹
+//		}
+////修改
+//		try{
+//			//如果Li文件夹下没有Li.txt就会在本地创建该文件
+//			BufferedWriter bw=new BufferedWriter(new FileWriter("D:\\Li\\Li.txt"));
+//			bw.write("Hello I/O!");//在创建好的文件中写入"Hello I/O"，看情况要不要加
+//			bw.close();//一定要关闭文件
+//		}catch(IOException e){
+//			e.printStackTrace();
+//		}
+//	}
+
+
+
+
+
+
+import java.io.File;
+import java.util.ArrayList;
+  
+public class course_one {
+    private static ArrayList<String> filelist = new ArrayList<String>();
+  
+    public static void main( String[] args ) throws Exception
+    {
+        String filePath = "F://2dm";
+        getFiles( filePath );
+    }
+  
+  
+ 
+    static void getFiles( String filePath )
+    {
+        File root = new File( filePath );
+        File[] files = root.listFiles();
+        for ( File file : files )
+        {
+            if ( file.isDirectory() )
+            {
+                /*
+                 * 递归调用
+                 */
+                getFiles( file.getAbsolutePath() );
+                filelist.add( file.getAbsolutePath() );
+                System.out.println( "显示" + filePath + "下目录名" + file.getAbsolutePath() );
+            }else{
+                System.out.println( "显示" + filePath + "下子文件名" + file.getAbsolutePath() );
+            }
+        }
+    }
+}
+
+
+//  列出桶中所有对象，并且看到文件夹中的文件
+public static void main(String[] args) {
+    //  创建 s3 对象
+    AmazonS3 s3 = new AmazonS3Client();
+
+    //  文件夹名字 ：
+    ObjectListing objects = s3.listObjects("lincanyuan");
+    do
+    {
+        for (S3ObjectSummary objectSummary : objects.getObjectSummaries())
+        {
+            System.out.println("Object: " + objectSummary.getKey());
+        }
+        objects = s3.listNextBatchOfObjects(objects);
+    } while (objects.isTruncated());
+}
+//}
