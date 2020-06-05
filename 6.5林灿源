@@ -1,0 +1,35 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+   
+</head>
+<body>
+      <style>
+        #div1{width: 1600px;height: 800px;background-image: url(C:\Users/lincanyuan/Desktop/b1.jpg);background-attachment: fixed;}
+        #div2{width: 1600px;height: 800px;background-image: url(C:\Users/lincanyuan/Desktop/b2.jpg);background-attachment: fixed;}
+        #div3{width: 1600px;height: 800px;background-image: url(C:\Users/lincanyuan/Desktop/b3.jpg);background-attachment: fixed;}
+    </style>
+
+    <div id="div1">
+        <form action="http://www.baidu.com">
+            <h1>输入框</h1>
+            <input type="text" placeholder="请输入账号">
+            <h2>密码框</h2>
+            <input type="password" placeholder="请输入密码">
+            <h3>上传文件</h3>
+            <input type="file">
+   
+            <h4>提交与重置按钮</h4>
+            <input type="submit" >
+            <input type="reset" > -->
+    </div>
+
+    <div id="div2"></div>
+
+    <div id="div3"></div>
+   
+    
+</body>
+</html>
